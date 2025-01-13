@@ -14,7 +14,7 @@ i18n_buddy is a tool designed to assist with the internationalization of your pr
 
 ### Running from Source
 
-1. Configure the [settings.toml](http://_vscodecontentref_/1) file in the root directory with your project settings:
+1. Configure the [settings.toml](settings.toml) file in the root directory with your project settings:
     ```toml
     [project]
     base_path = 'path/to/your/locales'
