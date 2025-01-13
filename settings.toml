@@ -1,0 +1,16 @@
+[project]
+base_path = 'C:\ProgrammingWorkspaces1\New folder\locales'
+source_lang = "en"
+target_lang = ["am", "es", "fr", "ko", "vi", "zh"]
+
+[custom_dictionary]
+path = "custom_dictionary.txt"
+
+[language_folder_mapper]
+en = "en"
+am = "am"
+es = "es"
+fr = "fr"
+ko = "ko"
+vi = "vi"
+zh = "zh"
