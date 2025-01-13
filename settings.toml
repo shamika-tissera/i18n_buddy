@@ -3,8 +3,10 @@ base_path = 'C:\ProgrammingWorkspaces1\New folder\locales'
 source_lang = "en"
 target_lang = ["am", "es", "fr", "ko", "vi", "zh"]
 
-[custom_dictionary]
-path = "custom_dictionary.txt"
+[program]
+enable_temp_backup = true
+temp_backup_dest = ""
+delete_backup_after_successful_completion = false
 
 [language_folder_mapper]
 en = "en"
