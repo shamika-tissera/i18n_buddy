@@ -14,7 +14,11 @@ class TranslationManager:
         self.target_languages = target_languages
         self.folder_mappings = fetch_folder_mappings()
         
-        self.source_files = fetch_source_files(f'{self.base_path}\\{self.folder_mappings[self.source_language]}')
+        try:
+            self.source_files = fetch_source_files(f'{self.base_path}\\{self.folder_mappings[self.source_language]}')
+        except FileNotFoundError:
+            log_in_console("Source files not found. Specified source file path is invalid. Exiting the program.", LogLevel.CRITICAL)
+            exit()
     
     def execute_translations(self):
         self.source_key_values = self.get_source_key_values()
