@@ -5,6 +5,7 @@ from translator import Translator
 from interactor import log_in_console, get_user_response
 import concurrent.futures
 from deep_translator.exceptions import TooManyRequests
+import sys
 
 class TranslationManager:
     def __init__(self, translator, base_path, source_language, target_languages):
@@ -18,7 +19,7 @@ class TranslationManager:
             self.source_files = fetch_source_files(f'{self.base_path}\\{self.folder_mappings[self.source_language]}')
         except FileNotFoundError:
             log_in_console("Source files not found. Specified source file path is invalid. Exiting the program.", LogLevel.CRITICAL)
-            exit()
+            sys.exit()
     
     def execute_translations(self):
         self.source_key_values = self.get_source_key_values()
@@ -40,9 +41,7 @@ class TranslationManager:
                     if source_key:
                         translated_value = source_key['value']
                         target_file[key] = translated_value
-            log_in_console(f"Writing translations to {file_name} in {lang}...", LogLevel.INFO)
             write_to_file(f'{self.base_path}\\{self.folder_mappings[lang]}\\{file_name}', target_file, ensure_ascii=False)
-            log_in_console(f"Translations written to {file_name} in {lang}.", LogLevel.INFO)
         
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = []
@@ -135,7 +134,7 @@ class TranslationManager:
 
         if not is_translation_required:
             log_in_console("All your files are in sync. You're good to go! Exiting the program.", LogLevel.INFO)
-            exit()
+            sys.exit()
         else:
             log_in_console("There are some files not in sync with the source files. Beginning translation...", LogLevel.INFO)
         

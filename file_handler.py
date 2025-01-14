@@ -2,6 +2,7 @@ import os
 from constants.log_levels import LogLevel
 from interactor import log_in_console
 import ujson # ujson is said to be more performant than the builtin library, hence using it
+import sys
 
 def fetch_source_files(file_path: str) -> list[dict]:
     """Fetch the source file content.
@@ -31,7 +32,7 @@ def fetch_target_files(file_path: str) -> list[dict]:
                         file_content = ujson.loads(content)
                     except ujson.JSONDecodeError:
                         log_in_console(f"File {file} in {file_path} is not a valid JSON file. Exiting the program.", LogLevel.CRITICAL)
-                        exit()
+                        sys.exit()
                     files_in_json.append({
                         'file_name': file,
                         'content': file_content
